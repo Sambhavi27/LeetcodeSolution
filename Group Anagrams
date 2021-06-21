@@ -1,0 +1,38 @@
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+       
+       /**
+       *Inner hashmap stores frequency of characters in a string
+       *outer hashmap for if anagrams store it in arraylist
+       */
+        HashMap<HashMap<Character,Integer>,ArrayList<String>> map=new HashMap<HashMap<Character,Integer>,ArrayList<String>>();
+        for(String s:strs){
+            HashMap<Character,Integer> temp=new HashMap<Character,Integer>();
+            
+            for(int i=0;i<s.length();i++){
+                if(temp.containsKey(s.charAt(i))){
+                    int c=temp.get(s.charAt(i));
+                    temp.put(s.charAt(i),++c);
+                }
+                else{
+                    temp.put(s.charAt(i),1);
+                }
+            }
+            
+            if(map.containsKey(temp))
+                map.get(temp).add(s);
+            else{
+                ArrayList<String> al=new ArrayList<String>();
+                al.add(s);
+                map.put(temp,al);
+            }
+        }
+        
+        List<List<String>> res=new ArrayList<>();
+        for(HashMap<Character,Integer> hash:map.keySet())
+            res.add(map.get(hash));
+        
+        return res;
+        
+    }
+}
