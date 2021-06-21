@@ -1,0 +1,18 @@
+class Solution {
+    public int numJewelsInStones(String jewels, String stones) {
+        int j[]=new int[256];
+        int s[]=new int[256];
+        int count=0;
+        for(char i:stones.toCharArray()){
+            int c=(int)i;
+            s[c]++;
+    }
+        for(char k:jewels.toCharArray()){
+            int c2=(int)k;
+            count=count+s[c2];
+        
+    }
+        return count;
+        
+    }
+}
